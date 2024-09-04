@@ -11,7 +11,7 @@ https://softwaredev3loper.wordpress.com/2016/02/17/from-zero-to-continuous-deliv
 ## Dependancies
 * git
 * maven
-* tomcat
+* tomcat123
 
 ## Eclipse Project setup
 * Use git clone to pull project into workspace directory
