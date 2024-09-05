@@ -9,7 +9,16 @@ stages:
     - job: firstjob
       steps:
       - bash: echo Build First Job
-      - bash: echo $(System.DefaultWorkingDirectory)
-      - bash: ls -r  $(System.DefaultWorkingDirectory)
-      - bash: echo $(Build.ArtifactStagingDirectory)
-      - bash: ls -r  $(Build.ArtifactStagingDirectory)
+      - bash: ls -R $(Build.ArtifactStagingDirectory)
+      - task: CopyFiles@2
+        inputs:
+          SourceFolder: '$(System.DefaultWorkingDirectory)'
+          Contents: |
+            **/*.java
+            **/*.yml
+          TargetFolder: '$(Build.ArtifactStagingDirectory)'
+      - task: PublishBuildArtifacts@1
+        inputs:
+              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+              ArtifactName: 'drop'
+              publishLocation: 'Container'
